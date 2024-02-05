@@ -4,7 +4,7 @@ from django.contrib.auth.models import AbstractUser
 # Create your models here.
 
 class User(AbstractUser):
-    phone = models.CharField("Phone", max_length=13, unique=True)
+    phone = models.CharField("Phone", max_length=13,blank=True)
     verification_code = models.CharField("Verification code", max_length=8)
     height = models.PositiveIntegerField(default=0)
     weight = models.PositiveIntegerField(default=0)

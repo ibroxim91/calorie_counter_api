@@ -19,7 +19,7 @@ class RegisterView(APIView):
         password = request.data.get("password")
         phone = request.data.get("phone")
         response = {"status":None, "detail":None}
-        if not  User.objects.filter(username=username).exists():
+        if username and not  User.objects.filter(username=username).exists():
             if not  User.objects.filter(phone=phone).exists():
 
                 user = User.objects.create_user(username=username,phone=phone,
@@ -32,6 +32,11 @@ class RegisterView(APIView):
         response['detail'] = "User not created"    
         return Response(response)
                 
+
+class VerificationView(APIView):
+
+    def get(self,request):
+        verification = request.data.get("verification")
 
 
 def error_404(request, exception):
