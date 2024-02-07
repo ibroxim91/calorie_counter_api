@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf.urls import handler404, handler500, handler403, handler400
 # from rest_framework_swagger.views import get_swagger_view
-
+from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 # schema_view = get_swagger_view(title='Calory counter API')
 
 
@@ -28,4 +28,9 @@ urlpatterns = [
     # path('docs', schema_view),
     path('api/', include('main.urls')),
     path('api-auth/', include('rest_framework.urls')),
+
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    # Optional UI:
+    path('api/schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    path('api/schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
 ]

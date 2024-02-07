@@ -29,6 +29,7 @@ class Food(models.Model):
         return self.title
 
 
+
 class History(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="history")
